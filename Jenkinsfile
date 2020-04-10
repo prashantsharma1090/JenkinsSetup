@@ -47,7 +47,7 @@ pipeline {
                
 			    nunit testResultsPattern: 'nunit2.xml'
 				//step([$class: 'MSTestPublisher', testResultsFile:"nunit2.xml", failOnError: true, keepLongStdio: true])
-				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportFiles: 'dotcover.html', reportName: 'Code Coverage', reportTitles: ''])
+				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '.', reportFiles: 'dotcover.html', reportName: 'Code Coverage', reportTitles: ''])
 			}	
         }
         stage('Deploy') {
