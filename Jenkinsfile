@@ -3,8 +3,12 @@
 pipeline {
     agent any
 	
-	def gitBin = tool name: 'Default', type: 'git'
-    def msbuildHome = tool name: 'v16.0 (vs2019)', type: 'hudson.plugins.msbuild.MsBuildInstallation'
+	environment {
+        ENV_NAME = "${env.BRANCH_NAME}"
+		gitBin = tool name: 'Default', type: 'git'
+        msbuildHome = tool name: 'v16.0 (vs2019)', type: 'hudson.plugins.msbuild.MsBuildInstallation'
+    }
+	
 
     stages {
 		
