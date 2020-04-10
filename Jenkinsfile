@@ -35,9 +35,9 @@ pipeline {
 			steps {
 				powershell """
 					 .nuget\\NuGet.exe install nunit.consolerunner -o . -excludeversion
-					  .nuget\\NuGet.exe install JetBrains.dotCover.CommandLineTools -o . -excludeversion
+					  .nuget\\NuGet.exe install JetBrains.dotCover.CommandLineTools -o . -excludeversion 
 					  
-					JetBrains.dotCover.CommandLineTools\\tools\\dotCover.exe analyze .\\dotcover-coverage.xml /TargetExecutable=".\\NUnit.ConsoleRunner\\tools\\nunit3-console.exe JenknisSetup.Tests\\bin\\Release\\JenknisSetup.Tests.dll --result:nunit2.xml" /TargetWorkingDir="." /Output="dotcover.html" /ReportType="HTML"
+					JetBrains.dotCover.CommandLineTools\\tools\\dotCover.exe analyze .\\dotcover-coverage.xml /TargetExecutable="NUnit.ConsoleRunner\\tools\\nunit3-console.exe" /TargetArguments="JenknisSetup.Tests\\bin\\Release\\JenknisSetup.Tests.dll --result:nunit2.xml" /TargetWorkingDir="." /Output="dotcover.html" /ReportType="HTML"
                 """
                 nunit testResultsPattern: '*.xml'
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'TestResults', reportFiles: 'dotcover.html', reportName: 'Code Coverage', reportTitles: ''])
