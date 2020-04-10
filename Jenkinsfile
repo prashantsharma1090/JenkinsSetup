@@ -11,28 +11,33 @@ pipeline {
 	
 
     stages {
-		
-			
+					
 		stage('NuGet restore') {
+			steps {
                 bat """
                     nuget restore JenknisSetup.sln
                 """
+			}
         }
 		
         stage('Publish') {
+			steps {
                 bat """
                     echo Building
                     \"${msbuildHome}\" JenknisSetup.sln /p:Configuration=Release  /p:Platform=\"Any CPU\" /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
                 """
+			}	
 
         }
         stage('Test') {
-            bat """
+			steps {
+				bat """
 					 nuget install nunit.consolerunner -o . -excludeversion
                      packages\\NUnit.ConsoleRunner\\tools\\nunit3-console.exe \"JenknisSetup.Tests\\bin\\Release\\JenknisSetup.Tests.dll\" --result:nunit-result.xml;format=nunit2
                 """
                 nunit testResultsPattern: '*.xml'
+			}	
         }
         stage('Deploy') {
             steps {
