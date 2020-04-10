@@ -41,13 +41,13 @@ pipeline {
 					  
                       
 					  
-					  JetBrains.dotCover.CommandLineTools\\tools\\dotCover.exe analyze .\\dotcover-coverage.xml /TargetExecutable="NUnit.ConsoleRunner\\tools\\nunit3-console.exe" /TargetArguments="JenknisSetup.Tests\\bin\\Release\\JenknisSetup.Tests.dll --result:nunit2.xml" /TargetWorkingDir="." /Output="dotcover.html" /ReportType="HTML"
+					  JetBrains.dotCover.CommandLineTools\\tools\\dotCover.exe analyze .\\dotcover-coverage.xml /TargetExecutable="NUnit.ConsoleRunner\\tools\\nunit3-console.exe" /TargetArguments="JenknisSetup.Tests\\bin\\Release\\JenknisSetup.Tests.dll --result:nunit2.xml" /TargetWorkingDir="." /Output="codecover\\dotcover.html" /ReportType="HTML"
 					
                 """
                
 			    nunit testResultsPattern: 'nunit2.xml'
 				//step([$class: 'MSTestPublisher', testResultsFile:"nunit2.xml", failOnError: true, keepLongStdio: true])
-				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '.', reportFiles: 'dotcover.html', reportName: 'Code Coverage', reportTitles: ''])
+				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'codecover', reportFiles: 'dotcover.html', reportName: 'Code Coverage', reportTitles: ''])
 			}	
         }
         stage('Deploy') {
