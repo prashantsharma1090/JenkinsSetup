@@ -35,9 +35,11 @@ pipeline {
 			steps {
 				bat """
 					 .nuget\\NuGet.exe install nunit.consolerunner -o . -excludeversion
-
-                     .\\NUnit.ConsoleRunner\\tools\\nunit3-console.exe \"JenknisSetup.Tests\\bin\\Release\\JenknisSetup.Tests.dll\" --result:nunit2.xml
-
+					 nuget install JetBrains.dotCover.CommandLineTools -o . -excludeversion
+					 
+					 $testResultsDir = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(".\\TestResults")
+										
+					JetBrains.dotCover.CommandLineTools\\tools\\dotCover.exe analyze .\\dotcover-coverage.xml /TargetExecutable=.\\NUnit.ConsoleRunner\\tools\\nunit3-console.exe \"JenknisSetup.Tests\\bin\\Release\\JenknisSetup.Tests.dll\" --result:nunit2.xml /TargetWorkingDir="." /Output="$testResultsDir\\dotcover.html" /ReportType="HTML"
                 """
                 nunit testResultsPattern: '*.xml'
 			}	
