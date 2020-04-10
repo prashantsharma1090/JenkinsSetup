@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Test') {
 			steps {
-				bat """
+				powershell """
 					 .nuget\\NuGet.exe install nunit.consolerunner -o . -excludeversion
 					 nuget install JetBrains.dotCover.CommandLineTools -o . -excludeversion
 					 
