@@ -1,5 +1,5 @@
 #!groovy
-#!JetBrains.dotCover.CommandLineTools\\tools\\dotCover.exe analyze .\\dotcover-coverage.xml /TargetExecutable="NUnit.ConsoleRunner\\tools\\nunit3-console.exe" /TargetArguments="JenknisSetup.Tests\\bin\\Release\\JenknisSetup.Tests.dll --result:nunit2.xml" /TargetWorkingDir="." /Output="dotcover.html" /ReportType="HTML"
+//JetBrains.dotCover.CommandLineTools\\tools\\dotCover.exe analyze .\\dotcover-coverage.xml /TargetExecutable="NUnit.ConsoleRunner\\tools\\nunit3-console.exe" /TargetArguments="JenknisSetup.Tests\\bin\\Release\\JenknisSetup.Tests.dll --result:nunit2.xml" /TargetWorkingDir="." /Output="dotcover.html" /ReportType="HTML"
 
 pipeline {
     agent any
