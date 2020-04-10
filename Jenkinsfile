@@ -42,7 +42,8 @@ pipeline {
 					
                 """
                
-				step([$class: 'MSTestPublisher', testResultsFile:"nunit2.xml", failOnError: true, keepLongStdio: true])
+			    nunit testResultsPattern: '*.xml'
+				//step([$class: 'MSTestPublisher', testResultsFile:"nunit2.xml", failOnError: true, keepLongStdio: true])
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'TestResults', reportFiles: 'dotcover.html', reportName: 'Code Coverage', reportTitles: ''])
 			}	
         }
