@@ -35,7 +35,7 @@ pipeline {
 			steps {
 				bat """
 					 .nuget\\NuGet.exe install nunit.consolerunner -o . -excludeversion
-                     .\\NUnit.ConsoleRunner\\tools\\nunit3-console.exe \"JenknisSetup.Tests\\bin\\Release\\JenknisSetup.Tests.dll\" --result:nunit-result.xml;format=nunit2
+                     .\\NUnit.ConsoleRunner\\tools\\nunit3-console.exe \"JenknisSetup.Tests\\bin\\Release\\JenknisSetup.Tests.dll\" --result:nunit-result.xml;
                 """
                 nunit testResultsPattern: '*.xml'
 			}	
