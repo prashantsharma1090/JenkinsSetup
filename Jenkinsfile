@@ -12,21 +12,7 @@ pipeline {
 
     stages {
 		
-		stage('Checkout') {
-                checkout scm
-
-                BRANCH = env.BRANCH_NAME
-                BUILD_NUMBER = env.BUILD_NUMBER
-                // Get the branch and the commit
-                bat "\"${gitBin}\" rev-parse --short HEAD > gitCommit"
-                def gitCommit = readFile('gitCommit').trim()
-                COMMIT = gitCommit
-                DEPLOYANDTEST = false
-
-
-                bat "echo Building commit ${COMMIT}"
-        }
-		
+			
 		stage('NuGet restore') {
                 bat """
                     nuget restore JenknisSetup.sln
