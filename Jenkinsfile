@@ -39,7 +39,7 @@ pipeline {
 					  
 					JetBrains.dotCover.CommandLineTools\\tools\\dotCover.exe analyze .\\dotcover-coverage.xml /TargetExecutable="NUnit.ConsoleRunner\\tools\\nunit3-console.exe" /TargetArguments="JenknisSetup.Tests\\bin\\Release\\JenknisSetup.Tests.dll --result:nunit2.xml" /TargetWorkingDir="." /Output="dotcover.html" /ReportType="HTML"
                 """
-                nunit testResultsPattern: '*.xml'
+                MSTestPublisher([testResultsFile: '*.xml', failOnError: true, keepLongStdio: true])
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'TestResults', reportFiles: 'dotcover.html', reportName: 'Code Coverage', reportTitles: ''])
 			}	
         }
