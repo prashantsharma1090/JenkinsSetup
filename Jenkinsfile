@@ -34,7 +34,7 @@ pipeline {
         stage('Test') {
 			steps {
 				bat """
-					 nuget install nunit.consolerunner -o . -excludeversion
+					 .nuget\\NuGet.exe install nunit.consolerunner -o . -excludeversion
                      packages\\NUnit.ConsoleRunner\\tools\\nunit3-console.exe \"JenknisSetup.Tests\\bin\\Release\\JenknisSetup.Tests.dll\" --result:nunit-result.xml;format=nunit2
                 """
                 nunit testResultsPattern: '*.xml'
