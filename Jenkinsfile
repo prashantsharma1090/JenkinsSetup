@@ -15,6 +15,7 @@ pipeline {
 		stage('NuGet restore') {
 			steps {
                 bat """
+					dotnet --version
                     nuget restore JenknisSetup.sln
                 """
 			}
