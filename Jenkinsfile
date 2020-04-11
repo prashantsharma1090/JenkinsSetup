@@ -3,7 +3,7 @@
 //NUnit.ConsoleRunner\\tools\\nunit3-console.exe JenknisSetup.Tests\\bin\\Release\\JenknisSetup.Tests.dll --result:nunit2.xml
 
 pipeline {
-    agent any
+    agent any options { skipDefaultCheckout() }
 	
 	environment {
         ENV_NAME = "${env.BRANCH_NAME}"
