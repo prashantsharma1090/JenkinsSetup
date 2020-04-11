@@ -87,4 +87,5 @@ def cleanWorkspace()
     {
         bat "\"${gitBin}\" clean -fxd"
     }
+	
 }
