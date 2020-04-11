@@ -15,7 +15,9 @@ pipeline {
     stages {
 	
 		stage('Clean up workspace and output build'){
-			cleanWorkspace();
+			steps {
+				cleanWorkspace();
+			}
 		}
 					
 		stage('NuGet restore') {
