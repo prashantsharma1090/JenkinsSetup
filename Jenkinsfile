@@ -18,7 +18,7 @@ pipeline {
 			steps {
                 bat """
 					dotnet --version
-                    .nuget\\NuGet.exe restore JenknisSetup.sln
+                    nuget restore JenknisSetup.sln
                 """
 			}
         }
@@ -38,8 +38,8 @@ pipeline {
 				script {
 					try {
 						powershell """
-							 .nuget\\NuGet.exe install nunit.consolerunner -o . -excludeversion
-							  .nuget\\NuGet.exe install JetBrains.dotCover.CommandLineTools -o . -excludeversion 
+							 nuget install nunit.consolerunner -o . -excludeversion
+							 nuget install JetBrains.dotCover.CommandLineTools -o . -excludeversion 
 							  
 							  
 							  
