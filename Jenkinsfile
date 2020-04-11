@@ -13,6 +13,10 @@ pipeline {
 	
 
     stages {
+	
+		stage('Clean up workspace and output build'){
+			cleanWorkspace();
+		}
 					
 		stage('NuGet restore') {
 			steps {
@@ -60,5 +64,15 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+    }
+}
+
+def cleanWorkspace()
+{
+    // Clean the working directory
+    def gitBin = tool name: 'Default', type: 'git'
+    retry(3)
+    {
+        bat "\"${gitBin}\" clean -fxd"
     }
 }
